@@ -7,18 +7,20 @@ export const useFetch = (url) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        (async() => {
-                try {
-                    setLoading(true);
-                    const response = await axios.get(url);
-                    setData(response.data);
-                } catch (err) {
-                    setError(err);
-                } finally {
-                    setLoading(false);
-                }
+        setLoading(true);
+        (async () => {
+            try {                
+                const response = await axios.get(url);
+                const data = await response?.data;
+                setData(data);
+            } catch (err) {
+                setError(err);
+            } finally {
+                setLoading(false);
             }
+        }
         )()
     }, [url])
-    return [data, error, loading]
+
+    return [loading,error,data]
 }

@@ -1,30 +1,24 @@
-import { useState } from 'react';
 import './App.css';
-import { CardTitleText } from './components/CardTitleText/CardTitleText';
+import { ExtraCoverTitle } from './components/ExtraCoverTitle/ExtraCoverTitle';
 import { Header } from './components/Header/Header';
-import { TotalPriceCard } from './components/PriceCard/TotalPriceCard';
-import { UserInfo } from './components/UserInfo/UserInfo';
-import { CardsContainer } from './contanier/CardsContainer';
+import { QuoteInfo } from './components/QuoteInfo/QuoteInfo';
+import { QuoteSummary } from './components/QuoteSummary/QuoteSummary';
+import { OptionalExtraCover } from './contanier/OptionalExtraCover';
 
-function App() {
-  const [togglePayment , setTogglePayment] = useState(false);
-  const handleTogglePayment = (e)=>{
-    setTogglePayment(!togglePayment);
-    console.log("togglePayment",togglePayment);
-  }
+const App = () => {
   return (
-    <div className="container-fluid ps-0 pe-0">
-      <Header />      
+    <div className="container-fluid px-0">
+      <Header />
       <div className="ms-4 me-4">
-      <div className="row mt-5">
-        <UserInfo key="UserInfo" />
-        <TotalPriceCard key="TotalPriceCard" togglePayment={handleTogglePayment}/>
+        <div className="row mt-5">
+          <QuoteInfo />
+          <QuoteSummary />
+        </div>
+        <div>
+          <ExtraCoverTitle/>
+          <OptionalExtraCover />
+        </div>
       </div>
-      <div>
-        <CardTitleText title={"Tailor your cover with our optional extra"} />
-        <CardsContainer togglePayment={togglePayment}/>
-      </div>
-    </div>
     </div>
   );
 }
